@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -45,7 +46,7 @@ public class PatientController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a patient", description = "Updates an existing patient's information")
-    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @Valid @RequestBody Patient patient) {
+    public ResponseEntity<Optional<Patient>> updatePatient(@PathVariable Long id, @Valid @RequestBody Patient patient) {
         return ResponseEntity.ok(patientService.updatePatient(id, patient));
     }
 

@@ -1,6 +1,5 @@
 package com.lessatini.practitioner_service.service;
 
-
 import com.lessatini.practitioner_service.entity.Practitioner;
 import com.lessatini.practitioner_service.repository.PractitionerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +27,6 @@ public class PractitionerService {
     }
 
     public Practitioner createPractitioner(Practitioner practitioner) {
-        if (practitionerRepository.findByRppsNumber(practitioner.getRppsNumber()).isPresent()) {
-            throw new RuntimeException("Practitioner with this RPPS number already exists");
-        }
         return practitionerRepository.save(practitioner);
     }
 
@@ -44,9 +40,5 @@ public class PractitionerService {
 
     public void deletePractitioner(Long id) {
         practitionerRepository.deleteById(id);
-    }
-
-    public List<Practitioner> getPractitionersBySpeciality(String speciality) {
-        return practitionerRepository.findBySpeciality(speciality);
     }
 }
